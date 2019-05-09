@@ -1,0 +1,44 @@
+<app-common-header></app-common-header>
+<div class = "container">
+  <h3 class = "mt-5" *ngIf="!existed">Add airport</h3>
+  <h3 class = "mt-5" *ngIf="existed">Edit airport</h3>
+  <form class = "mt-5" (ngSubmit)="onSubmit()" #airportForm="ngForm">
+    <div class="form-group">
+    
+      <label for="airportId" *ngIf = "existed">Identifier:</label>
+      <input type="text" class="form-control mt-2 mb-2" id="airportId" readonly
+      [(ngModel)]="airport.airportId" name="airportId" #airportId ="ngModel" *ngIf="existed">
+      
+      <label for="airportName">Name:</label>
+      <input type="text" class="form-control mt-2 mb-2" id="airportName" minlength="4" maxlength="60"
+      [(ngModel)]="airport.airportName" name="airportName" #airportName ="ngModel" required>
+      
+      <!-- <div *ngIf="airportName.invalid && (airportName.dirty || airportName.touched)" class="alert alert-danger">
+        <div *ngIf="airportName.errors.required">Name is required.</div>
+        <div *ngIf="airportName.errors.minlength">Name must be at least 4 characters long.</div>
+        <div *ngIf="airportName.errors.maxlength">Name must be not greater than 60 characters long.</div>
+      </div>
+       -->
+      <label for="airportCode">Code:</label>
+      <input type="text" class="form-control mt-2 mb-2" id="airportCode" minlength="4" maxlength="60"
+      [(ngModel)]="airport.airportCode" name="airportCode" #airportName ="ngModel" required>
+      
+      <!-- <div *ngIf="airportCode.invalid && (airportCode.dirty || airportCode.touched)" class="alert alert-danger">
+        <div *ngIf="airportCode.errors.required">Code is required.</div>
+        <div *ngIf="airportCode.errors.minlength">Code must be at least 4 characters long.</div>
+        <div *ngIf="airportCode.errors.maxlength">Code must be not greater than 60 characters long.</div>
+      </div> -->
+
+      <label for="citySelect">Select city</label>
+      <select class="form-control mt-2 mb-2" id="citySelect"
+      [(ngModel)]="airport.cityId" name="cityId" #cityId="ngModel" required>
+        <option *ngFor="let city of cities" [ngValue] = "city.cityId">{{city.cityName}}</option>
+      </select>
+
+      <div *ngIf="cityId.invalid && (cityId.dirty || cityId.touched)" class="alert alert-danger">
+          <div *ngIf="cityId.errors.required">Country is required.</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

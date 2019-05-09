@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+@import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
+=======
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+>>>>>>> 479f98c... fixed merge error
+=======
+>>>>>>> 0a4bd02... Revert "fixed merge error"
+=======
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+>>>>>>> e67c15c... asd
+=======
+>>>>>>> 86ab3fe... Revert "asd"
+=======
+@import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css'
+
+>>>>>>> c92b7f5... Implemented part of admin page

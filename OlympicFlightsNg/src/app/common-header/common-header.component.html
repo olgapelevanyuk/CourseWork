@@ -1,0 +1,97 @@
+<nav *ngIf = "isAdmin" class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      Olympic Flights
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Management
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/countries']">Countries</a>
+            <a class="dropdown-item" [routerLink]="['/cities']"> Cities</a>
+            <a class="dropdown-item" [routerLink]="['/airports']">Airports</a>
+            <a class="dropdown-item" [routerLink]="['/flights']"> Flights</a>
+            <a class="dropdown-item" [routerLink]="['/tickets']"> Tickets</a>
+            <a class="dropdown-item" [routerLink]="['/admin/statistics']"> Statistics</a>
+          </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/user/buyticket']">Buy ticket<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/user/tickets']">Show my tickets<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/user/profile']">My profile<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <div class="btn-group m-4" role="group" *ngIf="!isSignedIn">
+        <button class="btn btn-dark my-2 my-sm-0" [routerLink]="['/user/signin']">Sign in</button>
+        <button class="btn btn-primary my-2 my-sm-0" [routerLink]="['/user/signup']">Sing up</button>
+      </div>
+      <div class="btn-group m-4" role="group" *ngIf="isSignedIn" (click)="onLogout()">
+        <!-- <label class = "my-2 my-sm-0">Welcome, dear {{getUserName()}}</label> -->
+        <button class="btn btn-warning my-2 my-sm-0">Sign out</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<nav *ngIf = "!isAdmin" class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        Olympic Flights
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto" *ngIf = "isSignedIn">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/home']">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Management
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" [routerLink]="['/countries']">Countries</a>
+              <a class="dropdown-item" [routerLink]="['/cities']"> Cities</a>
+              <a class="dropdown-item" [routerLink]="['/airports']">Airports</a>
+              <a class="dropdown-item" [routerLink]="['/flights']"> Flights</a>
+            </div>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/user/buyticket']">Buy ticket<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/user/tickets']">Show my tickets<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/user/profile']">My profile<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <div class="btn-group m-4" role="group" *ngIf="!isSignedIn">
+          <button class="btn btn-dark my-2 my-sm-0" [routerLink]="['/user/signin']">Sign in</button>
+          <button class="btn btn-primary my-2 my-sm-0" [routerLink]="['/user/signup']">Sing up</button>
+        </div>
+        <div class="btn-group m-4" role="group" *ngIf="isSignedIn" (click)="onLogout()">
+          <button class="btn btn-warning my-2 my-sm-0">Sign out</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  

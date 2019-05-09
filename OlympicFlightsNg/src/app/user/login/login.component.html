@@ -1,0 +1,32 @@
+<app-common-header></app-common-header>
+<div class="container">
+  <div class="row">
+    <div class="col md-4 mt-4">
+      <h1>
+        Login
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col md-4 mt-4">
+      <form #form="ngForm" autocomplete="off" (submit)="onSubmit()">
+        <div class="form-group">
+          <label for="">Username</label>
+          <input class="form-control" type="text" #userName="ngModel" name="userName" id="userNameId" required
+            [(ngModel)]="userForm.userName">
+        </div>
+        <div class="form-group">
+          <label for="userPassword">Password</label>
+          <input class="form-control" type="password" #userPassword="ngModel" name="userPassword" id="userPasswordId"
+            required [(ngModel)]="userForm.userPassword">
+          <div class="form-group">
+            <div class="form-group mt-4">
+              <button type="submit" class="btn btn-lg btn-success" [disabled]="userForm.invalid">Sign In</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-8 mt-4"></div>
+  </div>
+</div>

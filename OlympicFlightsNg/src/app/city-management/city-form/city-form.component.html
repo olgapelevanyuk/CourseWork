@@ -1,0 +1,35 @@
+<app-common-header></app-common-header>
+
+<div class = "container">
+    <h3 class = "mt-5" *ngIf="!existed">Add city</h3>
+    <h3 class = "mt-5" *ngIf="existed">Edit city</h3>
+    <form class = "mt-5" (ngSubmit)="onSubmit()" #cityForm="ngForm">
+      <div class="form-group">
+      
+        <label for="cityId" *ngIf = "existed">Identifier:</label>
+        <input type="text" class="form-control mt-2 mb-2" id="cityId" readonly
+        [(ngModel)]="selectedCity.cityId" name="cityId" #cityId ="ngModel" *ngIf="existed">
+        
+        <label for="cityName">Name:</label>
+        <input type="text" class="form-control mt-2 mb-2" id="cityName" minlength="4" maxlength="60"
+        [(ngModel)]="selectedCity.cityName" name="cityName" #cityName ="ngModel">
+        
+        <div *ngIf="cityName.invalid && (cityName.dirty || cityName.touched)" class="alert alert-danger">
+          <div *ngIf="cityName.errors.required">Name is required.</div>
+          <div *ngIf="cityName.errors.minlength">Name must be at least 4 characters long.</div>
+          <div *ngIf="cityName.errors.maxlength">Name must be not greater than 60 characters long.</div>
+        </div>
+        
+        <label for="countrySelect">Select country</label>
+        <select class="form-control mt-2 mb-2" id="countrySelect"
+        [(ngModel)]="selectedCity.countryId" name="countryId" #countryId="ngModel">
+          <option *ngFor="let country of countries" [ngValue] = "country.countryId">{{country.countryName}}</option>
+        </select>
+
+        <div *ngIf="countryId.invalid && (countryId.dirty || countryId.touched)" class="alert alert-danger">
+            <div *ngIf="countryId.errors.required">Country is required.</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>

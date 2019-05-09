@@ -1,0 +1,65 @@
+<app-common-header></app-common-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mt-4">
+      <h1>
+        Sign Up
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mt-4">
+      <form [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()">
+        <div class="form-group">
+          <label for="">Username</label>
+          <input class="form-control" type="text" formControlName="userName" name="" id="userName" required>
+          <!-- validation -->
+          <label class="alert alert-danger mt-2"
+            *ngIf="formModel.get('userName').touched && formModel.get('userName').errors?.required">Name
+            is required</label>
+          <label class="alert alert-danger mt-2"
+            *ngIf="formModel.get('userName').touched && formModel.get('userName').errors?.minlength">Name
+            must be atleast 5 charachters</label>
+          <!-- validation -->
+        </div>
+        <div class="form-group">
+          <label for="">Email</label>
+          <input class="form-control" type="text" formControlName="userEmail" name="" id="userEmail" required>
+          <label class="alert alert-danger mt-2"
+            *ngIf="formModel.get('userEmail').touched && formModel.get('userEmail').errors?.required">Email
+            is required</label>
+          <label class="alert alert-danger mt-2"
+            *ngIf="formModel.get('userEmail').touched && formModel.get('userEmail').errors?.email">Invalid
+            email address</label>
+        </div>
+        <div formGroupName="userPasswords">
+          <div class="form-group">
+            <label for="userPassword">Password</label>
+            <input class="form-control" type="password" formControlName="userPassword" name="" id="userPassword"
+              required>
+            <!-- validation -->
+            <label class="alert alert-danger mt-2" for="userPassword"
+              *ngIf="formModel.get('userPasswords.userPassword').touched && formModel.get('userPasswords.userPassword').errors?.required">Password
+              is required</label>
+            <label class="alert alert-danger mt-2"
+              *ngIf="formModel.get('userPasswords.userPassword').touched && formModel.get('userPasswords.userPassword').errors?.minlength">Password
+              must be atleast 4 charachters</label>
+            <!-- validation -->
+          </div>
+          <div class="form-group">
+            <label for="userConfirmPassword">Confirm Password</label>
+            <input class="form-control" type="password" formControlName="userConfirmPassword" name=""
+              id="userConfirmPassword" required>
+            <label class="alert alert-danger mt-2"
+              *ngIf="formModel.get('userPasswords.userConfirmPassword').touched && formModel.get('userPasswords.userConfirmPassword').errors?.passwordMissmatch">Passwords
+              do not match</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-lg btn-success" [disabled]="!formModel.valid">Sign Up</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-8 mt-4"></div>
+  </div>
+</div>

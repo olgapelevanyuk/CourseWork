@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ApplicationUserManagement\**" />
+    <EmbeddedResource Remove="ApplicationUserManagement\**" />
+    <None Remove="ApplicationUserManagement\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190315194752_Initia.cs" />
+    <Compile Remove="Migrations\20190316125202_Refactored Country and City instances.cs" />
+    <Compile Remove="Migrations\20190316133213_ClientAccountImpl.cs" />
+    <Compile Remove="Migrations\20190316134232_AccClientImpl.cs" />
+    <Compile Remove="Migrations\20190316134442_ClientAccImpl.cs" />
+    <Compile Remove="Migrations\20190316134549_ClientAccImpl.cs" />
+    <Compile Remove="Migrations\20190316134703_ClientAccImpl.cs" />
+    <Compile Remove="Migrations\20190316134846_ClientAcc.cs" />
+    <Compile Remove="Migrations\20190316134953_refactoring.cs" />
+    <Compile Remove="Migrations\20190316135106_Impl.cs" />
+    <Compile Remove="Migrations\20190316165802_AirplaneTypeAirplanesConfigsAdded.cs" />
+    <Compile Remove="Migrations\20190316192118_Account_Airplane_AirplaneType_Client_RefactoredAndImplemented.cs" />
+    <Compile Remove="Migrations\20190501121744_FixRelationsBetweenClientAndUser.cs" />
+    <Compile Remove="Migrations\20190501121910_FixRelationsBetweenClientAndUser.cs" />
+    <Compile Remove="Migrations\20190501122248_FixSeed.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.identity.entityframeworkcore\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

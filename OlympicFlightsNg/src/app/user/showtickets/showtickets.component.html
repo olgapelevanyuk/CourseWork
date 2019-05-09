@@ -1,0 +1,37 @@
+<app-common-header></app-common-header>
+<div class="container mt-4">
+  <h1 class="display-12">Tickets list</h1>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <div class="mat-elevation-z1 mb-5">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="ticketId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+        <td mat-cell *matCellDef="let row"> {{row.ticketId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="clientId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Client Name</th>
+        <td mat-cell *matCellDef="let row"> {{row.client.clientFirstname}} {{row.client.clientLastname}} </td>
+      </ng-container>
+      <ng-container matColumnDef="flightId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Flight ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.flightId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Purchase date</th>
+        <td mat-cell *matCellDef="let row"> {{row.created | date:'medium'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let row">
+          <button type="button" class="btn btn-primary" (click)=onPrintPdf(row.ticketId)>Print PDF</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <button type="button" class="btn btn-success mt-1" routerLink="/user/buyticket">Buy ticket</button>
+
+</div>

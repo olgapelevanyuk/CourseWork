@@ -1,0 +1,137 @@
+<app-common-header></app-common-header>
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <form [formGroup]="ticketModel" autocomplete="off" (submit)="onSubmit()">
+          <div class="form-group">
+            <label for="depCity" class="mt-1">Select departure city</label>
+            <select class="form-control mt-2 mb-2" id="depCity" name="depCity" formControlName="depCity">
+              <option *ngFor="let city of cities" [ngValue]="city">{{city.cityName}} ({{city.country.countryName}})
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="arrCity" class="mt-1">Select arrive city</label>
+            <select class="form-control mt-2 mb-2" id="arrCity" name="arrCity" formControlName="arrCity">
+              <option *ngFor="let city of cities" [ngValue]="city">{{city.cityName}} ({{city.country.countryName}})
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="minFlightprice" class="mt-1">Enter min price $</label>
+            <input class="form-control" id="minFlightPrice" formControlName="minFlightPrice" type="number"
+              placeholder="Enter price" required>
+          </div>
+          <div class="form-group">
+            <label for="maxFlightPrice" class="mt-1">Enter max price $</label>
+            <input class="form-control" id="maxFlightPrice" formControlName="maxFlightPrice" type="number"
+              placeholder="Enter price" required>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="departureDate" class="mt-1">Select departure date</label>
+                <input id="departureDate" formControlName="departureDate" type="text" placeholder="Select"
+                  class="form-control" bsDatepicker required>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="departureTimePicker" class="mt-1">Select departure time</label>
+                <timepicker id="departureTimePicker" formControlName="departureTime" [showMeridian]="ismeridian">
+                </timepicker>
+                <br>
+                <button type="button" class="btn btn-info" (click)="toggleMode()">12H / 24H</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="arriveDate" class="mt-1">Select arrive date</label>
+                <input id="arriveDate" formControlName="arriveDate" type="text" placeholder="Select"
+                  class="form-control" bsDatepicker required>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="arriveTimePicker" class="mt-1">Select arrive time</label>
+                <timepicker id="arriveTimePicker" formControlName="arriveTime" [showMeridian]="ismeridian"></timepicker>
+                <br>
+                <button type="button" class="btn btn-info" (click)="toggleMode()">12H / 24H</button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <button type="button" (click)="onApplyFilter()" class="btn btn-primary">Apply filter</button>
+          </div>
+          <div class="form-group">
+            <button type="button" (click)="onRefresh()" class="btn btn-primary">Refresh</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-6 mt-2">
+        <h2>Client credentials</h2>
+        <form [formGroup]="clientModel" autocomplete="off" (submit)="onSubmit()">
+          <div class="form-group">
+            <label for="firstName" class="mt-1">Enter Firstname</label>
+            <input class="form-control" id="firstName" formControlName="firstName" type="text"
+              placeholder="Enter firstname" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName" class="mt-1">Enter Lastname</label>
+            <input class="form-control" id="lastName" formControlName="lastName" type="text"
+              placeholder="Enter lastname" required>
+          </div>
+          <div class="form-group">
+            <label for="address" class="mt-1">Enter address</label>
+            <input class="form-control" id="address" formControlName="address" type="text" placeholder="Enter address"
+              required>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h1 class="mt-5 mb-5">Flights List</h1>
+  </div>
+  <div class="row">
+    <table class="table table-nonfluid">
+      <thead>
+        <th scope="col">ID</th>
+        <th scope="col">Departure airport ID</th>
+        <th scope="col">Departure time</th>
+        <th scope="col">Arrive airport ID</th>
+        <th scope="col">Arrive time</th>
+        <th scope="col">Price</th>
+        <th scope="col">Actions</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flight of flights">
+          <th scope="row">{{flight.flightId}}</th>
+          <th scope="row">{{flight.departureAirport.city.cityName}} ({{flight.departureAirport.airportName}})</th>
+          <th scope="row">{{flight.departureTime | date: 'medium'}}</th>
+          <th scope="row">{{flight.arriveAirport.city.cityName}} ({{flight.arriveAirport.airportName}})</th>
+          <th scope="row">{{flight.arriveTime| date: 'medium'}}</th>
+          <th scope="row">{{flight.flightPrice}}$</th>
+          <td>
+            <span class="btn-toolbar row" role="toolbar" aria-label="Flight action buttons"
+              style="display: block; white-space:nowrap;">
+              <div class="btn-group mr-2" role="group" (click)="onBuyTicket(flight.flightId)" aria-label="Buy group"
+                *ngIf="!flight.isDeleted">
+                <button type="button" class="btn btn-danger">Buy ticket</button>
+              </div>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

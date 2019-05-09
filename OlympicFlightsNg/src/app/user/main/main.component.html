@@ -1,0 +1,15 @@
+<app-common-header></app-common-header>
+<div class="container">
+<div class="jumbotron mt-4">
+    <h1 class="display-4">Hello, User</h1>
+    <p class="lead">Are you ready to apply new features?</p>
+    <hr class="my-4">
+    <p>Go on check all statistics and do not forget to approve all tickets you have got</p>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary">See my tickets</button>
+      <a type="button" class="btn btn-success" [routerLink]="['/user/main/profile']"> See profile</a>
+    </div>
+    <div class ="btn-group ml-5" role="group">
+      <button class="btn btn-outline-success" [routerLink]="['/user/buyticket']">Buy ticket</button>
+    </div>
+  </div></div>

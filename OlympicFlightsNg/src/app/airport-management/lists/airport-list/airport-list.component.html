@@ -1,0 +1,52 @@
+<app-common-header></app-common-header>
+<div class="container">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+      <div class="mat-elevation-z1 mb-5">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="airportId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+            <td mat-cell *matCellDef="let row"> {{row.airportId}} </td>
+          </ng-container>
+          <ng-container matColumnDef="airportName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Airport Name</th>
+            <td mat-cell *matCellDef="let row"> {{row.airportName}}</td>
+          </ng-container>
+          <ng-container matColumnDef="airportCode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Airport Code </th>
+            <td mat-cell *matCellDef="let row"> {{row.airportCode}} </td>
+          </ng-container>
+          <ng-container  matColumnDef="cityName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> City Name </th>
+              <td mat-cell *matCellDef="let row"> {{row.cityName}} </td>
+            </ng-container>
+          <ng-container matColumnDef="actions" >
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let row">
+                <span class="btn-toolbar row" role="toolbar" aria-label="Airport action buttons"
+                style="display: block; white-space:nowrap;">
+                <div class="btn-group mr-2" role="group"
+                  (click)="onDelete(row.airportId,row.isDeleted)" aria-label="Delete group"
+                  *ngIf="!row.isDeleted">
+                  <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+                <!-- <div class="btn-group mr-2" role="group" aria-label="Delete group"
+                  *ngIf="row.isDeleted">
+                  <button type="button" class="btn btn-danger">Purge</button>
+                </div> -->
+                <div class="btn-group mr-2" role="group" aria-label="Edit group">
+                  <button routerLink="/airport/{{row.airportId}}" type="button" class="btn btn-primary">Edit</button>
+                </div>
+              </span>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+      </div>
+      <div class="btn-group" role="group" aria-label="View group">
+        <button routerLink="/airport" type="button" class="btn btn-success">Add airport</button>
+        
+      </div>
+</div>

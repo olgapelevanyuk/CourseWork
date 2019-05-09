@@ -1,0 +1,59 @@
+<app-common-header></app-common-header>
+<div class="container mt-5">
+  <div class ="row">
+  <div class="jumbotron col-6">
+    <h1 class="display-4">Statistics</h1>
+    <p class="lead">Here you can watch statistics!</p>
+    <hr class="my-4">
+    
+  </div>
+  <div class ="col-6">
+      <ul  class="list-group">
+          <li class="list-group-item">Overall users: {{overallStat.overallUsers}} </li>
+          <li class="list-group-item">Overall clients: {{overallStat.overallClients}}</li>
+          <li class="list-group-item">Overall flights: {{overallStat.overallFlights}}</li>
+          <li class="list-group-item">Overall countries: {{overallStat.overallCountries}}</li>
+          <li class="list-group-item">Overall profit: {{overallStat.overallProfit}}$</li>
+          <li class="list-group-item">Overall incoming profit: {{overallStat.incomingProfit}}$</li>
+          <li class ="list-group-item"><button class = "btn btn-primary" (click)="onPrintStatistics()">Download PDF</button></li>
+        </ul>    
+  </div>
+  </div>
+  <div id="carouselExampleIndicators" class="carousel slide mb-5" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <canvas class="d-block w-100" id='flightMonthsChart'></canvas>
+        <div class="carousel-caption d-none d-md-block">
+          <button class = "btn btn-primary" type= "button" (click)="fmToPdf()">PDF</button>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <canvas class="d-block w-100" id='clientMonthsChart'></canvas>
+        <div class="carousel-caption d-none d-md-block">
+          <button class = "btn btn-primary" type= "button" (click)="cmToPdf()">PDF</button>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <canvas class="d-block w-100" id='ticketMonthsChart'></canvas>
+        <div class="carousel-caption d-none d-md-block">
+          <button class = "btn btn-primary" type= "button" (click)="tmToPdf()">PDF</button>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  
+</div>

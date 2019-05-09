@@ -1,0 +1,54 @@
+<app-common-header></app-common-header>
+
+<div class="container mt-4">
+  <h1 class="display-12">Tickets list</h1>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <div class="mat-elevation-z1 mb-5">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="ticketId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+        <td mat-cell *matCellDef="let row"> {{row.ticketId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="clientId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Client Name</th>
+        <td mat-cell *matCellDef="let row"> {{row.client.clientFirstname}} {{row.client.clientLastname}} </td>
+      </ng-container>
+      <ng-container matColumnDef="flightId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Flight ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.flightId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Purchase date</th>
+        <td mat-cell *matCellDef="let row"> {{row.created.toLocaleString()}} </td>
+      </ng-container>
+      <ng-container matColumnDef="approve">
+        <th mat-header-cell *matHeaderCellDef>Approve</th>
+        <td mat-cell *matCellDef="let row">
+          <button *ngIf="!row.isPurchaseApproved" type="button" class="btn btn-success" (click)=onApprove(row.ticketId)>Approve</button>
+          <button *ngIf="row.isPurchaseApproved" type="button" class="btn btn-success" (click)=onApprove(row.ticketId) disabled='true'>Approve</button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let row">
+            <!-- <div class="btn-group mr-2" role="group" (click)="onDelete(row.ticketId)" aria-label="Delete group"
+              *ngIf="!row.isDeleted">
+              <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+            <div class="btn-group mr-2" role="group" (click)="onRestore(row.ticketId)" aria-label="Delete group"
+              *ngIf="row.isDeleted">
+              <button type="button" class="btn btn-danger">Restore</button>
+            </div> -->
+            <div class="btn-group ml-2" role="group" aria-label="Delete group" *ngIf="!row.isDeleted"
+              (click)="onPurge(row.ticketId)">
+              <button type="button" class="btn btn-danger">Purge</button>
+            </div>
+          </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

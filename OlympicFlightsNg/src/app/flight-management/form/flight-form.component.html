@@ -1,0 +1,90 @@
+<app-common-header></app-common-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mt-4">
+      <h1>
+        Add flight
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mt-4">
+      <form [formGroup]="flightModel" autocomplete="off" (submit)="onSubmit()">
+        <div class="form-group">
+          <label for="departureAirportIdSelect" class="mt-5">Select departure airport</label>
+          <select class="form-control mt-2 mb-2" id="departureAirportIdSelect" name="departureAirportId" formControlName="departureAirportId">
+            <option *ngFor="let airport of airports" [ngValue]="airport.airportId">{{airport.airportName}}</option>
+          </select>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="departureDate" class="mt-1">Select departure date</label>
+                    <input id="departureDate"  formControlName = "departureDate" type="text" placeholder="Select" class="form-control" bsDatepicker
+                      required>
+                  </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="departureTimePicker" class="mt-1">Select departure time</label>
+                <timepicker id="departureTimePicker" formControlName="departureTime" [showMeridian]="ismeridian"></timepicker>
+                <br>
+                <button type="button" class="btn btn-info" (click)="toggleMode()">12H / 24H</button>
+              </div>
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="arriveAirportIdSelect" class="mt-1">Select arrive airport</label>
+          <select class="form-control mt-2 mb-2" id="arriveAirportIdSelect" name="arriveAirportId" formControlName="arriveAirportId">
+            <option *ngFor="let airport of airports" [ngValue]="airport.airportId">{{airport.airportName}}</option>
+          </select>
+<<<<<<< HEAD
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="arriveDate" class="mt-1">Select arrive date</label>
+              <input id="arriveDate" formControlName = "arriveDate" type="text" placeholder="Select" class="form-control" bsDatepicker
+                required>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="arriveTimePicker" class="mt-1">Select arrive time</label>
+              <timepicker id="arriveTimePicker" formControlName="arriveTime" [showMeridian]="ismeridian"></timepicker>
+              <br>
+              <button type="button" class="btn btn-info" (click)="toggleMode()">12H / 24H</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="price" class="mt-1">Enter price of flight</label>
+          <input class="form-control" id="flightPrice" formControlName="flightPrice" type="number" placeholder="Enter price"
+            required>
+        </div>
+        <!-- <label class="alert alert-danger mt-2" *ngIf="formModel.get('arriveAirportId').touched && formModel.get('arriveAirportId').errors?.required">Airport
+            is required</label> -->
+        <!-- v alidation -->
+=======
+          
+          <mat-form-field class="example-full-width">
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+
+          <label class="alert alert-danger mt-2"
+            *ngIf="formModel.get('arriveAirportId').touched && formModel.get('arriveAirportId').errors?.required">Airport
+            is required</label>
+          <!-- validation -->
+>>>>>>> e67c15c... asd
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-lg btn-primary" >Submit</button>
+          <!-- [disabled]="!flightModel.valid" -->
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4 mt-4"></div>
+  </div>
